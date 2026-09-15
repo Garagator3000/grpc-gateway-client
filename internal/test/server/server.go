@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/bufbuild/protoyaml-go"
+	"buf.build/go/protoyaml"
 	"google.golang.org/genproto/googleapis/api/httpbody"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -55,7 +55,7 @@ func (s *testServiceServer) TrackInvitation(req *testv1.TrackInvitationRequest, 
 	// worse, silently truncates the stream.
 	if req.GetId() == "large-events" {
 		large := strings.Repeat("x", 300*1024)
-		for i := 0; i < 3; i++ {
+		for range 3 {
 			if err := srv.Send(&testv1.TrackInvitationResponse{
 				Type:    testv1.EventType_EVENT_TYPE_SEEN,
 				Message: large,

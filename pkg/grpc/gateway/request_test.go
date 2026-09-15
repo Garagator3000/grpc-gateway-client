@@ -10,7 +10,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/bufbuild/protoyaml-go"
+	"buf.build/go/protoyaml"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/stretchr/testify/require"
 	"github.com/stretchr/testify/suite"
@@ -47,7 +47,7 @@ func (s *RequestTestSuite) SetupTest() {
 		_ = s.grpcSrv.Serve(s.l)
 	}()
 
-	cc, err := grpc.Dial("",
+	cc, err := grpc.NewClient("passthrough:///bufnet",
 		grpc.WithContextDialer(func(_ context.Context, _ string) (net.Conn, error) {
 			return s.l.Dial()
 		}),
@@ -173,8 +173,7 @@ read:
 	}
 
 	var actual []*testv1.Invitation
-	docs := strings.Split(buf.String(), "---\n")
-	for _, doc := range docs {
+	for doc := range strings.SplitSeq(buf.String(), "---\n") {
 		data := strings.TrimSpace(doc)
 		if data == "" {
 			continue
