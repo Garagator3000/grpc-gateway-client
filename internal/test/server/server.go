@@ -12,8 +12,8 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
-	"github.com/akuity/grpc-gateway-client/internal/assets"
-	"github.com/akuity/grpc-gateway-client/internal/test/gen/testv1"
+	"github.com/Garagator3000/grpc-gateway-client/internal/assets"
+	"github.com/Garagator3000/grpc-gateway-client/internal/test/gen/testv1"
 
 	_ "embed"
 )

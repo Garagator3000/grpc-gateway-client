@@ -4,7 +4,7 @@ import (
 	"context"
 	"strings"
 
-	ctxutil "github.com/akuity/grpc-gateway-client/pkg/context"
+	ctxutil "github.com/Garagator3000/grpc-gateway-client/pkg/context"
 )
 
 type authorizationHeaderKey struct {
