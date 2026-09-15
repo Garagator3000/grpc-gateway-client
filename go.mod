@@ -1,4 +1,4 @@
-module github.com/akuity/grpc-gateway-client
+module github.com/Garagator3000/grpc-gateway-client
 
 go 1.26.8
 
